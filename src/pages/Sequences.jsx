@@ -77,7 +77,7 @@ const Sequence = () => {
     // Send the email via an API call
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/v1/email/send-email",
+        "https://salesbackend.vercel.app/api/v1/email/send-email",
         data,
         { headers: { "Content-Type": "application/json" } }
       );
