@@ -8,7 +8,8 @@ const initialState = {
   user: null,
 };
 
-const baseURL = "https://salesbackend.vercel.app//api/v1";
+const baseURL = "https://salesbackend.vercel.app/api/v1";
+// const baseURL = "http://localhost:8080/api/v1";  // Corrected the baseURL here
 
 export const registerUser = createAsyncThunk(
   "auth/register",
@@ -28,7 +29,7 @@ export const loginUser = createAsyncThunk("auth/login", async (formData) => {
   return response.data;
 });
 
-export const chechAuth = createAsyncThunk("auth/check-auth", async () => {
+export const checkAuth = createAsyncThunk("auth/check-auth", async () => {  // Corrected the name here
   const response = await axios.get(`${baseURL}/auth/check-auth`, {
     withCredentials: true,
     headers: {
@@ -86,20 +87,20 @@ const authSlice = createSlice({
         state.user = null;
         state.isAuthenticated = false;
       })
-      .addCase(chechAuth.pending, (state) => {
+      .addCase(checkAuth.pending, (state) => {  // Corrected the name here
         state.isLoading = true;
       })
-      .addCase(chechAuth.fulfilled, (state, action) => {
+      .addCase(checkAuth.fulfilled, (state, action) => {  // Corrected the name here
         state.isLoading = false;
         state.user = !action.payload.success ? null : action.payload.user;
         state.isAuthenticated = !action.payload.success ? false : true;
       })
-      .addCase(chechAuth.rejected, (state) => {
+      .addCase(checkAuth.rejected, (state) => {  // Corrected the name here
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
       })
-      .addCase(logoutUser.fulfilled, (state, action) => {
+      .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
         state.isAuthenticated = false;
       });

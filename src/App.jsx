@@ -8,9 +8,10 @@ import Check_Auth from "./components/Check-Auth";
 import { useDispatch, useSelector } from "react-redux";
 import DashBoard from "./pages/DashBoard";
 import Header from "./components/Header";
-import { chechAuth } from "./store/auth";
+
 import SubHeader from "./components/SubHeader";
 import Sequences from "./pages/Sequences";
+import { checkAuth } from "./store/auth";
 
 const App = () => {
   const { isAuthenticated } = useSelector((state) => state.auth);
@@ -18,7 +19,7 @@ const App = () => {
   const location = useLocation(); 
 
   useEffect(() => {
-    dispatch(chechAuth());
+    dispatch(checkAuth());
   }, [dispatch]);
 
   return (
